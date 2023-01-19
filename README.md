@@ -103,7 +103,7 @@ esta escolha para submissão das atividades garante a sua privacidade.
 Ex.: 
 ```shell
 npm run build
-rm -r node_modules .angular
+rm -r node_modules
 rm -r .angular
 zip -r datafarm-job-opportunity.zip .
 ``` 
