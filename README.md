@@ -97,13 +97,14 @@ Para submeter as atividades faça o build do projeto com o comando:
 npm run build
 ```
 
-Remova a pasta `node_modules` e comprima o projeto todo em formato `.zip`,
+Remova a pasta `node_modules`, `.angular` e comprima o projeto todo em formato `.zip`,
 esta escolha para submissão das atividades garante a sua privacidade.
 
 Ex.: 
 ```shell
 npm run build
-rm -r node_modules
+rm -r node_modules .angular
+rm -r .angular
 zip -r datafarm-job-opportunity.zip .
 ``` 
 
