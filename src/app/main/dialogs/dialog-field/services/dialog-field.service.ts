@@ -1,18 +1,17 @@
-import {Injectable} from "@angular/core";
-import {MatDialog} from "@angular/material/dialog";
-import {DialogFieldComponent} from "../dialog-field.component";
+import { DialogFieldComponent } from "../dialog-field.component";
+import { Injectable } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: "root",
 })
 export class DialogFieldService {
-    constructor(private matDialog: MatDialog) {
-    }
+  constructor(private matDialog: MatDialog) {}
 
-    open() {
-        this.matDialog.open(DialogFieldComponent, {
-            width: '450px',
-            height: '250px',
-        })
-    }
+  open() {
+    this.matDialog.open(DialogFieldComponent, {
+      width: "1000px",
+      height: "450px",
+    });
+  }
 }

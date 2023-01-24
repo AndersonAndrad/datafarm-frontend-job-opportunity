@@ -1,2 +1,47 @@
-<chart-line [informations]="evolution"></chart-line>
-<chart-bar [informations]="rain"></chart-bar>
+<div class="container-field">
+  <form class="form-field" [formGroup]="formFields">
+    <div class="fields">
+      <mat-form-field class="form-grower-field">
+        <mat-label>Proprietario</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ex. "
+          formControlName="grower"
+        />
+        <mat-error> Code is <strong>required</strong> </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-farm-field">
+        <mat-label>Fazenda</mat-label>
+        <input type="text" matInput placeholder="Ex. " formControlName="farm" />
+        <mat-error> Code is <strong>required</strong> </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field-field">
+        <mat-label>Talhão</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ex. "
+          formControlName="field"
+        />
+        <mat-error> Code is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-button
+      mat-raised-button
+      color="primary"
+      [disabled]="!formFields.valid"
+      (click)="onSubmit()"
+    >
+      Salvar
+    </button>
+  </form>
+  <div class="charts">
+    <chart-line [informations]="evolution"></chart-line>
+    <chart-bar [informations]="rain"></chart-bar>
+  </div>
+</div>

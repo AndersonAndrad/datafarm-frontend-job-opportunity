@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FieldService, IRain } from "src/app/services/field.service";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 import { IChartBarData } from "../../charts/chart-bar/chart-bar.component";
 import { IChartLineData } from "../../charts/chart-line/chart-line.component";
@@ -11,6 +12,8 @@ import { MatDialogRef } from "@angular/material/dialog";
   styleUrls: ["./dialog-field.component.scss"],
 })
 export class DialogFieldComponent implements OnInit {
+  formFields: FormGroup;
+
   /* Evolution data chart */
   private _evolution!: IChartLineData;
 
@@ -19,8 +22,15 @@ export class DialogFieldComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<DialogFieldComponent>,
-    private fieldService: FieldService
-  ) {}
+    private fieldService: FieldService,
+    private formBuilder: FormBuilder
+  ) {
+    this.formFields = this.formBuilder.group({
+      grower: new FormControl(""),
+      farm: new FormControl(""),
+      field: new FormControl(""),
+    });
+  }
 
   ngOnInit(): void {
     this.fieldService
@@ -40,6 +50,7 @@ export class DialogFieldComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  /* HELPERS */
   private makeRainChar(rain: IRain) {
     const labels: string[] = [];
     const data: number[] = [];
@@ -58,6 +69,13 @@ export class DialogFieldComponent implements OnInit {
         },
       ],
     };
+  }
+
+  /* ACTIONS */
+  onSubmit() {
+    const data = this.formFields.value;
+
+    console.log({ data });
   }
 
   get evolution() {

@@ -1,24 +1,25 @@
-:host {
+.container-field {
   display: flex;
-  flex-direction: column;
-  align-content: space-between;
-  margin: 30px;
-}
 
-header {
-  font-size: 15px;
-  color: #5b5b5b;
-  margin-bottom: 20px;
-}
+  padding: 30px;
 
-.form-auth {
-}
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-button {
-  margin-top: 30px;
-  width: 100%;
-}
+    .fields {
+      display: flex;
+      flex-direction: column;
+    }
 
-.form-auth-field {
-  width: 100%;
+    button {
+      width: 20%;
+      margin-left: auto;
+    }
+  }
+
+  .charts {
+    padding: 0 20px;
+  }
 }
