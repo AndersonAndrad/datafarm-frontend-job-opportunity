@@ -6,6 +6,7 @@ import { ApplicationComponent } from "./application/application.component";
 import { ApplicationInterceptor } from "./core/application/interceptor/application.interceptor";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
+import { CharBarComponent } from "./main/charts/chart-bar/chart-bar.component";
 import { ChartLineComponent } from "./main/charts/chart-line/chart-line.component";
 import { DialogAuthComponent } from "./main/dialogs/dialog-auth/dialog-auth.component";
 import { DialogFieldComponent } from "./main/dialogs/dialog-field/dialog-field.component";
@@ -32,6 +33,7 @@ import { SubmissionComponent } from "./main/submission/submission.component";
     SubmissionComponent,
     DialogFieldComponent,
     ChartLineComponent,
+    CharBarComponent,
   ],
   imports: [
     BrowserModule,

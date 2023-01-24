@@ -60,16 +60,18 @@ interface ISuccessDashboard {
       xLabel: string;
       yLabel: string;
     };
-    rain: {
-      data: { x: string; y: number }[];
-      xLabel: string;
-      yLabel: string;
-    };
+    rain: IRain;
     efficiency: {
       data: number;
       label: string;
     };
   };
+}
+
+export interface IRain {
+  data: { x: string; y: number }[];
+  xLabel: string;
+  yLabel: string;
 }
 
 const data: ISuccessDashboard = {

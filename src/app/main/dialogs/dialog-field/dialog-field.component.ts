@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { FieldService, IRain } from "src/app/services/field.service";
 
-import { FieldService } from "src/app/services/field.service";
+import { IChartBarData } from "../../charts/chart-bar/chart-bar.component";
 import { IChartLineData } from "../../charts/chart-line/chart-line.component";
 import { MatDialogRef } from "@angular/material/dialog";
 
@@ -10,7 +11,11 @@ import { MatDialogRef } from "@angular/material/dialog";
   styleUrls: ["./dialog-field.component.scss"],
 })
 export class DialogFieldComponent implements OnInit {
+  /* Evolution data chart */
   private _evolution!: IChartLineData;
+
+  /* Rain data chart */
+  private _rain!: IChartBarData;
 
   constructor(
     private dialogRef: MatDialogRef<DialogFieldComponent>,
@@ -26,6 +31,8 @@ export class DialogFieldComponent implements OnInit {
           fill: true,
           data: [...data.evolution.data],
         };
+
+        this.makeRainChar(data.rain);
       });
   }
 
@@ -33,7 +40,31 @@ export class DialogFieldComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  private makeRainChar(rain: IRain) {
+    const labels: string[] = [];
+    const data: number[] = [];
+
+    rain.data.map(({ x, y }) => {
+      labels.push(x);
+      data.push(y);
+    });
+
+    this._rain = {
+      labels,
+      datasets: [
+        {
+          data,
+          label: "Rain",
+        },
+      ],
+    };
+  }
+
   get evolution() {
     return this._evolution;
+  }
+
+  get rain() {
+    return this._rain;
   }
 }
