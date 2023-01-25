@@ -24,33 +24,31 @@ export class FieldService {
    * @param fieldId
    * @returns
    */
-  getField(fieldId?: string): Observable<ISuccessDashboard> {
+  getFieldDashboard(fieldId?: string): Observable<ISuccessDashboard> {
     return new Observable((observer) => observer.next(data));
+  }
 
-    // return this.httpClient
-    //   .get<ISuccesField>(`${this.DEFAULT_URL}/${fieldId}`)
-    //   .subscribe((data) => console.log(data));
+  /**
+   * Get field data - (grower, farm, field)
+   * @param fieldId string
+   * @returns Observer
+   */
+  getField(fieldId: string): Observable<IField> {
+    return new Observable((observer) => observer.next(mockFarm));
+  }
+
+  /**
+   * Update data field - (grower, farm, field)
+   * @param field
+   * @returns Observable
+   */
+  updateField({ fieldId, ...field }: IUpdateField) {
+    return this.httpClient.put("", field);
   }
 }
 
-interface ISuccesField {
-  data: {
-    grower: "string";
-    farm: "string";
-    field: "string";
-  };
-  success: {
-    title: "string";
-  };
-  warning: {
-    title: "string";
-    description: "string";
-  };
-  error: {
-    title: "string";
-    description: "string";
-    status: 0;
-  };
+interface IUpdateField extends IField {
+  fieldId: string;
 }
 
 interface ISuccessDashboard {
@@ -65,6 +63,14 @@ interface ISuccessDashboard {
       data: number;
       label: string;
     };
+  };
+}
+
+interface IField {
+  data: {
+    grower: string;
+    farm: string;
+    field: string;
   };
 }
 
@@ -448,5 +454,13 @@ const data: ISuccessDashboard = {
       data: 70,
       label: "%",
     },
+  },
+};
+
+const mockFarm: IField = {
+  data: {
+    grower: "Gomes Costa",
+    farm: "Paraty",
+    field: "PA 01",
   },
 };

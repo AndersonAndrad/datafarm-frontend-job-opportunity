@@ -38,7 +38,7 @@ export class DialogFieldComponent implements OnInit {
 
   ngOnInit(): void {
     this.fieldService
-      .getField("2f306266-4e00-4334-a631-de489cea48d2")
+      .getFieldDashboard("2f306266-4e00-4334-a631-de489cea48d2")
       .subscribe(({ data }) => {
         this._evolution = {
           label: "Evolution",
@@ -53,6 +53,10 @@ export class DialogFieldComponent implements OnInit {
           data: [data.efficiency.data, data.efficiency.data - 100],
         };
       });
+
+    this.fieldService.getField("").subscribe(({ data }) => {
+      this.formFields.patchValue(data);
+    });
   }
 
   close() {
