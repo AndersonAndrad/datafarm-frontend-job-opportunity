@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 import { IChartBarData } from "../../charts/chart-bar/chart-bar.component";
 import { IChartLineData } from "../../charts/chart-line/chart-line.component";
+import { IChartPieData } from "../../charts/chart-pie/chart-pie.component";
 import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
@@ -19,6 +20,9 @@ export class DialogFieldComponent implements OnInit {
 
   /* Rain data chart */
   private _rain!: IChartBarData;
+
+  /* Efficiency data */
+  private _efficiency!: IChartPieData;
 
   constructor(
     private dialogRef: MatDialogRef<DialogFieldComponent>,
@@ -43,6 +47,11 @@ export class DialogFieldComponent implements OnInit {
         };
 
         this.makeRainChar(data.rain);
+
+        this._efficiency = {
+          label: "Efficiency",
+          data: [data.efficiency.data, data.efficiency.data - 100],
+        };
       });
   }
 
@@ -84,5 +93,9 @@ export class DialogFieldComponent implements OnInit {
 
   get rain() {
     return this._rain;
+  }
+
+  get efficiency() {
+    return this._efficiency;
   }
 }

@@ -41,7 +41,12 @@
     </button>
   </form>
   <div class="charts">
-    <chart-line [informations]="evolution"></chart-line>
-    <chart-bar [informations]="rain"></chart-bar>
+    <div class="charts-top">
+      <chart-line [informations]="evolution"></chart-line>
+    </div>
+    <div class="charts-bottom">
+      <chart-bar [informations]="rain"></chart-bar>
+      <chart-Pie [informations]="efficiency"></chart-Pie>
+    </div>
   </div>
 </div>

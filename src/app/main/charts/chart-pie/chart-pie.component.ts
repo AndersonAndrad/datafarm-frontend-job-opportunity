@@ -1,12 +1,12 @@
-import { Chart, registerables } from "chart.js";
+import { Chart, ChartDataset, registerables } from "chart.js";
 import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 
 @Component({
-  selector: "chart-bar",
-  templateUrl: "./chart.bar.component.html",
+  selector: "chart-Pie",
+  templateUrl: "./chart-pie.component.html",
 })
-export class CharBarComponent {
-  @Input() informations!: IChartBarData;
+export class ChartPieComponent {
+  @Input() informations!: IChartPieData;
 
   @ViewChild("mychart") mychart!: ElementRef;
 
@@ -18,33 +18,23 @@ export class CharBarComponent {
     this.canvas = this.mychart.nativeElement;
     this.ctx = this.canvas;
 
-    const datasets = {
+    const datasets: ChartDataset = {
       ...this.informations,
-      ...(this.informations.datasets[0] = {
-        ...this.informations.datasets[0],
-        backgroundColor: [randomRGB().rgba],
-      }),
+      backgroundColor: [randomRGB().rgba, "rgb(255, 255, 255)"],
     };
 
     new Chart(this.ctx, {
-      type: "bar",
-      data: datasets,
-      options: {
-        responsive: true,
+      type: "pie",
+      data: {
+        datasets: [datasets],
       },
     });
   }
 }
 
-export interface IChartBarData {
-  labels: string[];
-  datasets: {
-    label: string;
-    data: Number[];
-    backgroundColor?: string[];
-    borderColor?: string[];
-    borderWidth?: 1;
-  }[];
+export interface IChartPieData {
+  label: string;
+  data: number[];
 }
 
 const randomColor = (): number => {

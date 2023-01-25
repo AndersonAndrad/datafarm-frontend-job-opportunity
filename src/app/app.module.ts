@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { CharBarComponent } from "./main/charts/chart-bar/chart-bar.component";
 import { ChartLineComponent } from "./main/charts/chart-line/chart-line.component";
+import { ChartPieComponent } from "./main/charts/chart-pie/chart-pie.component";
 import { DialogAuthComponent } from "./main/dialogs/dialog-auth/dialog-auth.component";
 import { DialogFieldComponent } from "./main/dialogs/dialog-field/dialog-field.component";
 import { HeaderComponent } from "./main/components/header/header.component";
@@ -34,6 +35,7 @@ import { SubmissionComponent } from "./main/submission/submission.component";
     DialogFieldComponent,
     ChartLineComponent,
     CharBarComponent,
+    ChartPieComponent,
   ],
   imports: [
     BrowserModule,
