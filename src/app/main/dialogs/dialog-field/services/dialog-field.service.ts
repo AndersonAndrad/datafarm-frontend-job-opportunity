@@ -9,6 +9,8 @@ export class DialogFieldService {
   constructor(private matDialog: MatDialog) {}
 
   open() {
-    this.matDialog.open(DialogFieldComponent);
+    this.matDialog.open(DialogFieldComponent, {
+      width: "1200px",
+    });
   }
 }

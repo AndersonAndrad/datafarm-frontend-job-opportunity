@@ -28,6 +28,9 @@ export class ChartPieComponent {
       data: {
         datasets: [datasets],
       },
+      options: {
+        responsive: true,
+      },
     });
   }
 }

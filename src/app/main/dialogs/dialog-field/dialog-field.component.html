@@ -45,8 +45,12 @@
       <chart-line [informations]="evolution"></chart-line>
     </div>
     <div class="charts-bottom">
-      <chart-bar [informations]="rain"></chart-bar>
-      <chart-Pie [informations]="efficiency"></chart-Pie>
+      <div class="chartBar">
+        <chart-bar [informations]="rain"></chart-bar>
+      </div>
+      <div class="chartPie">
+        <chart-Pie [informations]="efficiency"></chart-Pie>
+      </div>
     </div>
   </div>
 </div>
