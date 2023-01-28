@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FieldService, IRain } from "src/app/services/field.service";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
+import { FieldService } from "src/app/services/field.service";
 import { IChartBarData } from "../../charts/chart-bar/chart-bar.component";
 import { IChartLineData } from "../../charts/chart-line/chart-line.component";
 import { IChartPieData } from "../../charts/chart-pie/chart-pie.component";
+import { IRain } from "src/app/services/field.interface";
 import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
@@ -16,13 +17,13 @@ export class DialogFieldComponent implements OnInit {
   formFields: FormGroup;
 
   /* Evolution data chart */
-  private _evolution!: IChartLineData;
+  private _evolution!: IChartLineData[];
 
   /* Rain data chart */
   private _rain!: IChartBarData;
 
   /* Efficiency data */
-  private _efficiency!: IChartPieData;
+  private _efficiency!: IChartPieData[];
 
   constructor(
     private dialogRef: MatDialogRef<DialogFieldComponent>,
@@ -40,18 +41,22 @@ export class DialogFieldComponent implements OnInit {
     this.fieldService
       .getFieldDashboard("2f306266-4e00-4334-a631-de489cea48d2")
       .subscribe(({ data }) => {
-        this._evolution = {
-          label: "Evolution",
-          fill: true,
-          data: [...data.evolution.data],
-        };
+        this._evolution = [
+          {
+            label: "Evolution",
+            fill: true,
+            data: [...data.evolution.data],
+          },
+        ];
 
         this.makeRainChar(data.rain);
 
-        this._efficiency = {
-          label: "Efficiency",
-          data: [data.efficiency.data, data.efficiency.data - 100],
-        };
+        this._efficiency = [
+          {
+            label: "Efficiency",
+            data: [data.efficiency.data, data.efficiency.data - 100],
+          },
+        ];
       });
 
     this.fieldService.getField("").subscribe(({ data }) => {

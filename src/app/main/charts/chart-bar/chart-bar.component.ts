@@ -3,7 +3,7 @@ import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 
 @Component({
   selector: "chart-bar",
-  templateUrl: "./chart.bar.component.html",
+  templateUrl: "./chart-bar.component.html",
 })
 export class CharBarComponent {
   @Input() informations!: IChartBarData;
@@ -20,10 +20,10 @@ export class CharBarComponent {
 
     const datasets = {
       ...this.informations,
-      ...(this.informations.datasets[0] = {
-        ...this.informations.datasets[0],
+      ...this.informations.datasets.map((data) => ({
+        ...data,
         backgroundColor: [randomRGB().rgba],
-      }),
+      })),
     };
 
     new Chart(this.ctx, {

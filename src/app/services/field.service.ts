@@ -1,7 +1,8 @@
-import { Observable, Subject } from "rxjs";
+import { IField, ISuccessDashboard, IUpdateField } from "./field.interface";
 
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -9,15 +10,7 @@ import { Injectable } from "@angular/core";
 export class FieldService {
   private readonly DEFAULT_URL = "https://job.datafarm.app/api/field";
 
-  private mock = new Subject<ISuccessDashboard>();
-
-  private setMock() {
-    this.mock.next(data);
-  }
-
-  constructor(private httpClient: HttpClient) {
-    this.setMock();
-  }
+  constructor(private httpClient: HttpClient) {}
 
   /**
    * Get field by id
@@ -45,39 +38,6 @@ export class FieldService {
   updateField({ fieldId, ...field }: IUpdateField) {
     return this.httpClient.put("", field);
   }
-}
-
-interface IUpdateField extends IField {
-  fieldId: string;
-}
-
-interface ISuccessDashboard {
-  data: {
-    evolution: {
-      data: { x: number; y: number }[];
-      xLabel: string;
-      yLabel: string;
-    };
-    rain: IRain;
-    efficiency: {
-      data: number;
-      label: string;
-    };
-  };
-}
-
-interface IField {
-  data: {
-    grower: string;
-    farm: string;
-    field: string;
-  };
-}
-
-export interface IRain {
-  data: { x: string; y: number }[];
-  xLabel: string;
-  yLabel: string;
 }
 
 const data: ISuccessDashboard = {

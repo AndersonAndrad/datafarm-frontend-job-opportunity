@@ -6,7 +6,7 @@ import { Component, ElementRef, Input, ViewChild } from "@angular/core";
   templateUrl: "./chart-pie.component.html",
 })
 export class ChartPieComponent {
-  @Input() informations!: IChartPieData;
+  @Input() informations!: IChartPieData[];
 
   @ViewChild("mychart") mychart!: ElementRef;
 
@@ -18,15 +18,16 @@ export class ChartPieComponent {
     this.canvas = this.mychart.nativeElement;
     this.ctx = this.canvas;
 
-    const datasets: ChartDataset = {
-      ...this.informations,
+    /* Add custom color to chart */
+    const datasets: ChartDataset[] = this.informations.map((information) => ({
+      ...information,
       backgroundColor: [randomRGB().rgba, "rgb(255, 255, 255)"],
-    };
+    }));
 
     new Chart(this.ctx, {
       type: "pie",
       data: {
-        datasets: [datasets],
+        datasets,
       },
       options: {
         responsive: true,

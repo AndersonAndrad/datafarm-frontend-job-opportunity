@@ -6,7 +6,7 @@ import { Component, ElementRef, Input, ViewChild } from "@angular/core";
   templateUrl: "./chart-line.component.html",
 })
 export class ChartLineComponent {
-  @Input() informations!: IChartLineData;
+  @Input() informations!: IChartLineData[];
 
   @ViewChild("mychart") mychart!: ElementRef;
 
@@ -18,16 +18,16 @@ export class ChartLineComponent {
     this.canvas = this.mychart.nativeElement;
     this.ctx = this.canvas;
 
-    const datasets: ChartDataset = {
-      ...this.informations,
+    const datasets: ChartDataset[] = this.informations.map((information) => ({
+      ...information,
       backgroundColor: randomRGB().rgba,
       borderColor: randomRGB().rgb,
-    };
+    }));
 
     new Chart(this.ctx, {
       type: "line",
       data: {
-        datasets: [datasets],
+        datasets,
       },
       options: {
         responsive: true,
