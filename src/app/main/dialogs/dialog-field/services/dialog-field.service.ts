@@ -8,9 +8,10 @@ import { MatDialog } from "@angular/material/dialog";
 export class DialogFieldService {
   constructor(private matDialog: MatDialog) {}
 
-  open() {
+  open(fieldId: string) {
     this.matDialog.open(DialogFieldComponent, {
       width: "1200px",
+      data: { fieldId },
     });
   }
 }

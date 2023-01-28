@@ -14,9 +14,11 @@ export class MenuActionsComponent {
   ) {}
 
   openDashboard() {
+    if (!this.mapService.activeField) return;
+
     console.log("Open Dashboard");
     console.log(`idField: ${this.mapService.activeField}`);
-    this.dialogFieldService.open();
+    this.dialogFieldService.open(this.mapService.activeField);
   }
 
   deleteField() {

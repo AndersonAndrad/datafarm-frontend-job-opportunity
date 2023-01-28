@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { IRain } from "src/app/services/field.interface";
 import { FieldService } from "src/app/services/field.service";
 import { IChartBarData } from "../../charts/chart-bar/chart-bar.component";
 import { IChartLineData } from "../../charts/chart-line/chart-line.component";
 import { IChartPieData } from "../../charts/chart-pie/chart-pie.component";
-import { IRain } from "src/app/services/field.interface";
-import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: "app-dialog-field",
@@ -26,6 +26,7 @@ export class DialogFieldComponent implements OnInit {
   private _efficiency!: IChartPieData[];
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { fieldId: string },
     private dialogRef: MatDialogRef<DialogFieldComponent>,
     private fieldService: FieldService,
     private formBuilder: FormBuilder
@@ -39,7 +40,7 @@ export class DialogFieldComponent implements OnInit {
 
   ngOnInit(): void {
     this.fieldService
-      .getFieldDashboard("2f306266-4e00-4334-a631-de489cea48d2")
+      .getFieldDashboard(this.data.fieldId)
       .subscribe(({ data }) => {
         this._evolution = [
           {
