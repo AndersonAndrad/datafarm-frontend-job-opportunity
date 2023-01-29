@@ -16,13 +16,12 @@ export class MenuActionsComponent {
   openDashboard() {
     if (!this.mapService.activeField) return;
 
-    console.log("Open Dashboard");
-    console.log(`idField: ${this.mapService.activeField}`);
     this.dialogFieldService.open(this.mapService.activeField);
   }
 
   deleteField() {
-    console.log("Delete Field");
-    console.log(`idField: ${this.mapService.activeField}`);
+    if (!this.mapService.activeField) return;
+
+    this.mapService.resetHighlight(this.mapService.activeField);
   }
 }
