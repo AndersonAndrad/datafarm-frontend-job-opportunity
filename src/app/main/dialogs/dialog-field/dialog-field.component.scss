@@ -1,0 +1,72 @@
+.container-field {
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px;
+
+  header {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+
+    >button {
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+  }
+
+  main {
+    display: flex;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .fields {
+      display: flex;
+      flex-direction: column;
+    }
+
+    button {
+      width: 20%;
+      margin-left: auto;
+    }
+  }
+
+  .charts {
+    display: grid;
+
+    width: 100%;
+    height: fit-content;
+
+    padding: 0 20px;
+
+    .charts-top {
+      grid-column: 1 / 3;
+      grid-row: 1 / 2;
+
+      width: 100%;
+    }
+
+    .charts-bottom {
+      grid-column: 1 / 3;
+      grid-row: 2 / 3;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+
+      height: fit-content;
+    }
+  }
+
+  .chartBar {
+    height: 100%;
+    width: 100%;
+  }
+}
