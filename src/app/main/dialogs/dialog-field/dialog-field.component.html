@@ -1,56 +1,68 @@
 <div class="container-field">
-  <form class="form-field" [formGroup]="formFields">
-    <div class="fields">
-      <mat-form-field class="form-grower-field">
-        <mat-label>Proprietario</mat-label>
-        <input
-          type="text"
-          matInput
-          placeholder="Ex. "
-          formControlName="grower"
-        />
-        <mat-error> Code is <strong>required</strong> </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-farm-field">
-        <mat-label>Fazenda</mat-label>
-        <input type="text" matInput placeholder="Ex. " formControlName="farm" />
-        <mat-error> Code is <strong>required</strong> </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-field-field">
-        <mat-label>Talhão</mat-label>
-        <input
-          type="text"
-          matInput
-          placeholder="Ex. "
-          formControlName="field"
-        />
-        <mat-error> Code is <strong>required</strong> </mat-error>
-      </mat-form-field>
-    </div>
-
-    <button
-      mat-button
-      mat-raised-button
-      color="primary"
-      [disabled]="!formFields.valid"
-      (click)="onSubmit()"
-    >
-      Salvar
+  <header>
+    <button (click)="close()">
+      <mat-icon>close</mat-icon>
     </button>
-  </form>
-  <div class="charts">
-    <div class="charts-top">
-      <chart-line [informations]="evolution"></chart-line>
-    </div>
-    <div class="charts-bottom">
-      <div class="chartBar">
-        <chart-bar [informations]="rain"></chart-bar>
+  </header>
+  <main>
+    <form class="form-field" [formGroup]="formFields">
+      <div class="fields">
+        <mat-form-field class="form-grower-field">
+          <mat-label>Proprietario</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Ex. "
+            formControlName="grower"
+          />
+          <mat-error> Code is <strong>required</strong> </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-farm-field">
+          <mat-label>Fazenda</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Ex. "
+            formControlName="farm"
+          />
+          <mat-error> Code is <strong>required</strong> </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field-field">
+          <mat-label>Talhão</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Ex. "
+            formControlName="field"
+          />
+          <mat-error> Code is <strong>required</strong> </mat-error>
+        </mat-form-field>
       </div>
-      <div class="chartPie">
-        <chart-Pie [informations]="efficiency"></chart-Pie>
+
+      <button
+        mat-button
+        mat-raised-button
+        color="primary"
+        [disabled]="!formFields.valid"
+        (click)="onSubmit()"
+      >
+        Salvar
+      </button>
+    </form>
+    <div class="charts">
+      <div class="charts-top">
+        <chart-line [informations]="evolution"></chart-line>
+      </div>
+      <div class="charts-bottom">
+        <div class="chartBar">
+          <chart-bar [informations]="rain"></chart-bar>
+        </div>
+        <div class="chartPie">
+          <chart-Pie [informations]="efficiency"></chart-Pie>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 </div>

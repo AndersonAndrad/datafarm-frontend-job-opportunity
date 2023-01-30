@@ -1,7 +1,25 @@
 .container-field {
   display: flex;
+  flex-direction: column;
 
   padding: 30px;
+
+  header {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+
+    >button {
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+  }
+
+  main {
+    display: flex;
+  }
 
   .form-field {
     display: flex;
