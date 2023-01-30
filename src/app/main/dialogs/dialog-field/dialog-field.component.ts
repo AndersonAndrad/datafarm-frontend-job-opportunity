@@ -94,7 +94,7 @@ export class DialogFieldComponent implements OnInit {
   onSubmit() {
     const data = this.formFields.value;
 
-    console.log({ data });
+    this.fieldService.updateField({ fieldId: this.data.fieldId, ...data });
   }
 
   get evolution() {

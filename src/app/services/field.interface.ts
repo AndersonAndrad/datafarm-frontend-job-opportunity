@@ -2,7 +2,7 @@ export interface IUpdateField extends IField {
   fieldId: string;
 }
 
-export interface ISuccessDashboard {
+export interface ISuccessDashboard extends IDefaultResponse {
   data: {
     evolution: {
       data: { x: number; y: number }[];
@@ -17,16 +17,33 @@ export interface ISuccessDashboard {
   };
 }
 
+export interface IGetFilder {
+  data: IField;
+}
+
 export interface IField {
-  data: {
-    grower: string;
-    farm: string;
-    field: string;
-  };
+  grower: string;
+  farm: string;
+  field: string;
 }
 
 export interface IRain {
   data: { x: string; y: number }[];
   xLabel: string;
   yLabel: string;
+}
+
+export interface IDefaultResponse {
+  success: {
+    title: string;
+  } | null;
+  warning: {
+    title: string;
+    description: string;
+  } | null;
+  error: {
+    title: string;
+    description: string;
+    status: number;
+  } | null;
 }

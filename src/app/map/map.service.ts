@@ -2,6 +2,7 @@ import * as L from "leaflet";
 
 import { Feature } from "geojson";
 import { HttpClient } from "@angular/common/http";
+import { IDefaultResponse } from "../services/field.interface";
 import { Injectable } from "@angular/core";
 import { MapData } from "./map.model";
 import { Observable } from "rxjs";
@@ -16,7 +17,7 @@ export class MapService {
   /* All festures registred - key fieldId */
   private mapFeature = new Map<string, any>();
 
-  private DEFAULT_URL = `/api`;
+  private DEFAULT_URL = `https://job.datafarm.app/api/farm`;
 
   // @ts-ignore
   private _map: MapData;
@@ -49,7 +50,7 @@ export class MapService {
    * @returns Observable - IFarmResponse[]
    */
   private getFarms(): Observable<IFarmResponse> {
-    return this.httpClient.get<IFarmResponse>("/farm");
+    return this.httpClient.get<IFarmResponse>(`${this.DEFAULT_URL}`);
   }
 
   insertFields() {
@@ -136,21 +137,9 @@ export class MapService {
   }
 }
 
-interface IFarmResponse {
+interface IFarmResponse extends IDefaultResponse {
   data: {
     name: string;
     fields: Feature[];
   };
-  success: {
-    title: string;
-  } | null;
-  warning: {
-    title: string;
-    description: string;
-  } | null;
-  error: {
-    title: string;
-    description: string;
-    status: number;
-  } | null;
 }
