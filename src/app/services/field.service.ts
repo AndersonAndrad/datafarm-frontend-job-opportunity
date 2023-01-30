@@ -37,7 +37,10 @@ export class FieldService {
    * @param field
    * @returns Observable
    */
-  updateField({ fieldId, ...field }: IUpdateField) {
-    return this.httpClient.put(`${this.DEFAULT_URL}/${fieldId}`, field);
+  updateField({ fieldId, ...field }: IUpdateField): Observable<IGetFilder> {
+    return this.httpClient.put<IGetFilder>(
+      `${this.DEFAULT_URL}/${fieldId}`,
+      field
+    );
   }
 }

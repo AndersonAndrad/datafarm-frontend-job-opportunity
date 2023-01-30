@@ -60,7 +60,7 @@ export class DialogFieldComponent implements OnInit {
         ];
       });
 
-    this.fieldService.getField("").subscribe(({ data }) => {
+    this.fieldService.getField(this.data.fieldId).subscribe(({ data }) => {
       this.formFields.patchValue(data);
     });
   }
@@ -94,7 +94,11 @@ export class DialogFieldComponent implements OnInit {
   onSubmit() {
     const data = this.formFields.value;
 
-    this.fieldService.updateField({ fieldId: this.data.fieldId, ...data });
+    this.fieldService
+      .updateField({ fieldId: this.data.fieldId, ...data })
+      .subscribe(({ data }) => {
+        this.formFields.patchValue(data);
+      });
   }
 
   get evolution() {
